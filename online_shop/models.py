@@ -22,13 +22,13 @@ class Product(models.Model):
 
     name = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
-    price = models.DecimalField(max_digits=5, decimal_places=2)
-    image = models.ImageField(upload_to='products/')
+    price = models.FloatField(null=True, blank=True)
+    image = models.ImageField(upload_to='product',null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
     quantity = models.IntegerField(default=0)
     rating = models.PositiveSmallIntegerField(choices=RatingChoices.choices, default=RatingChoices.zero.value,
                                               null=True)
-    discount = models.PositiveSmallIntegerField(default=0)
+    discount = models.PositiveSmallIntegerField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
